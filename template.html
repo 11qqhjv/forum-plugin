@@ -1,0 +1,312 @@
+<div id="forum_panel" class="forum-app" style="display: none;">
+
+  <!-- ==================== 主界面 ==================== -->
+  <div id="forum_main_view" class="forum-main-view">
+
+    <header class="masthead" id="forum_drag_handle">
+      <div class="mast-left">
+        <h1 class="mast-title">幻境社区</h1>
+        <div class="mast-sub">HUANJING COMMUNITY</div>
+      </div>
+      <nav class="mast-tools">
+        <button class="hd-primary" id="forum_quick_gen" title="刷一批">
+          <i class="fa-solid fa-rotate-right"></i>
+        </button>
+        <button class="hd-btn" id="forum_open_gen" title="造事件 / 挖坟">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </button>
+        <button class="hd-btn hd-msg" id="forum_open_msg" title="消息">
+          <i class="fa-solid fa-envelope"></i>
+          <em class="hd-badge" id="forum_msg_badge" style="display:none;">0</em>
+        </button>
+        <button class="hd-btn" id="forum_open_api" title="设置">
+          <i class="fa-solid fa-sliders"></i>
+        </button>
+        <button class="hd-btn hd-close" id="forum_close_btn" title="关闭">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </nav>
+    </header>
+
+    <div class="app-trends" id="forum_trends"></div>
+
+    <div class="app-filters" id="forum_filters">
+      <div class="filter-pill active" data-filter="all">全部</div>
+      <div class="filter-pill" data-filter="forum">论坛</div>
+      <div class="filter-pill" data-filter="tieba">贴吧</div>
+      <div class="filter-pill" data-filter="weibo">微博</div>
+      <div class="filter-pill" data-filter="xhs">小红书</div>
+      <div class="filter-pill" data-filter="fav"><i class="fa-solid fa-star"></i> 收藏</div>
+    </div>
+
+    <div class="app-content" id="forum_list"></div>
+  </div>
+
+  <div class="resize-handle" id="forum_resize" title="拖动缩放窗口"></div>
+
+  <!-- ==================== 生成面板 ==================== -->
+  <div id="forum_gen_sheet" class="forum-sheet" style="display: none;">
+    <div class="sheet-card">
+      <div class="sheet-rule"></div>
+      <div class="sheet-title">G E N E R A T E</div>
+
+      <button class="sheet-row" id="gen_mixed">
+        <span class="sheet-no">01</span>
+        <span class="sheet-body">
+          <b>刷一批新帖</b>
+          <small>按当前分区生成散帖</small>
+        </span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+
+      <button class="sheet-row" id="gen_event">
+        <span class="sheet-no">02</span>
+        <span class="sheet-body">
+          <b>一个事件 · 四平台</b>
+          <small>同一件事，四个平台各歪一遍</small>
+        </span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+
+      <div class="sheet-row sheet-row-input">
+        <span class="sheet-no">03</span>
+        <span class="sheet-body">
+          <b>挖坟</b>
+          <input type="text" id="necro_input" class="forum-set-input" placeholder="关键词，翻出几年前的老帖">
+        </span>
+        <button class="btn-ghost" id="gen_necro">挖</button>
+      </div>
+
+      <button class="sheet-close" id="gen_sheet_close">取消</button>
+    </div>
+  </div>
+
+  <!-- ==================== 转发给谁 ==================== -->
+  <div id="forum_char_pick" class="forum-sheet" style="display: none;">
+    <div class="sheet-card">
+      <div class="sheet-rule"></div>
+      <div class="sheet-title">给谁看</div>
+      <div class="char-pick-list" id="char_pick_list"></div>
+      <button class="sheet-close" id="char_pick_close">取消</button>
+    </div>
+  </div>
+
+  <!-- ==================== 消息 ==================== -->
+  <div id="forum_msg_panel" style="display: none;">
+    <header class="msg-header">
+      <span class="nav-back" id="forum_msg_back" title="返回"><i class="fa-solid fa-arrow-left"></i></span>
+      <div class="msg-tabs">
+        <div class="msg-tab active" data-tab="char">角色</div>
+        <div class="msg-tab" data-tab="dm">私信</div>
+        <div class="msg-tab" data-tab="bottle">漂流瓶</div>
+      </div>
+    </header>
+
+    <!-- 角色私聊 -->
+    <div class="msg-pane" id="msg_tab_char" style="display: none;">
+      <div class="dm-wrap" id="char_list_view">
+        <div class="dm-list" id="char_list"></div>
+      </div>
+
+      <div class="dm-wrap" id="char_chat_view" style="display: none;">
+        <div class="dm-chat-head">
+          <span class="nav-back" id="char_back_list"><i class="fa-solid fa-arrow-left"></i></span>
+          <div class="char-face" id="char_avatar"></div>
+          <div class="dm-chat-meta">
+            <b id="char_chat_name"></b>
+            <span id="char_chat_sub"></span>
+          </div>
+          <i class="fa-solid fa-trash-can char-wipe" id="char_wipe" title="清空这段对话"></i>
+        </div>
+        <div class="dm-messages" id="char_messages"></div>
+        <div class="bottle-compose">
+          <input type="text" class="bottle-input" id="char_input" placeholder="说点什么…">
+          <button class="bottle-send" id="char_send">发送</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 陌生网友私信 -->
+    <div class="msg-pane" id="msg_tab_dm" style="display: none;">
+      <div class="dm-wrap" id="dm_list_view">
+        <div class="dm-list" id="dm_list"></div>
+        <div class="dm-foot">
+          <button class="ghost-wide" id="forum_fetch_dm">看看有没有人找我</button>
+        </div>
+      </div>
+
+      <div class="dm-wrap" id="dm_chat_view" style="display: none;">
+        <div class="dm-chat-head">
+          <span class="nav-back" id="dm_back_list"><i class="fa-solid fa-arrow-left"></i></span>
+          <div class="dm-chat-meta">
+            <b id="dm_chat_name"></b>
+            <span id="dm_chat_from"></span>
+          </div>
+        </div>
+        <div class="dm-messages" id="dm_messages"></div>
+        <div class="bottle-compose">
+          <input type="text" class="bottle-input" id="dm_input" placeholder="回他一句…">
+          <button class="bottle-send" id="dm_send">发送</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 漂流瓶 -->
+    <div class="msg-pane" id="msg_tab_bottle" style="display: none;">
+      <div class="bottle-ocean">
+        <div class="ocean-waves"></div>
+        <div class="ocean-waves ocean-waves-2"></div>
+
+        <div class="bottle-stamp">M E S S A G E &nbsp; I N &nbsp; A &nbsp; B O T T L E</div>
+
+        <div id="bottle_message_box" style="display: none;">
+          <div class="bottle-paper">
+            <div class="bottle-text" id="bottle_text"></div>
+            <div class="bottle-author" id="bottle_author"></div>
+          </div>
+        </div>
+
+        <button class="ocean-btn" id="forum_dredge_btn">🌊 捞一个瓶子</button>
+      </div>
+      <div class="bottle-compose">
+        <input type="text" class="bottle-input" id="forum_bottle_input" placeholder="在纸上写点什么，扔向大海…">
+        <button class="bottle-send" id="forum_throw_btn">扔出</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 设置 ==================== -->
+  <div id="forum_modal_overlay" style="display: none;">
+    <div id="forum_api_panel">
+
+      <div class="modal-header">
+        <div>
+          <div class="modal-kicker">S E T T I N G S</div>
+          <div class="modal-title">幻境设置</div>
+        </div>
+        <span id="forum_close_modal_icon" title="关闭"><i class="fa-solid fa-xmark"></i></span>
+      </div>
+
+      <div class="modal-body">
+
+        <section class="set-sec">
+          <div class="sec-no">01</div>
+          <div class="sec-main">
+            <div class="sec-title">距离</div>
+            <div class="sec-desc">网友离你的故事有多近</div>
+            <div class="seg" id="forum_distance">
+              <div class="seg-item" data-v="0"><b>无关</b><span>纯路人日常</span></div>
+              <div class="seg-item" data-v="1"><b>擦边</b><span>聊你世界的事</span></div>
+              <div class="seg-item" data-v="2"><b>直击</b><span>你就是话题</span></div>
+            </div>
+            <div class="seg-hint" id="forum_distance_hint"></div>
+          </div>
+        </section>
+
+        <section class="set-sec">
+          <div class="sec-no">02</div>
+          <div class="sec-main">
+            <div class="sec-title">规模</div>
+            <div class="sec-desc">调大会更费 token，生成也更慢</div>
+            <div class="num-grid">
+              <div class="num-cell">
+                <span>每次生成</span>
+                <div class="num-cell-row">
+                  <input type="number" id="forum_gen_count" class="forum-set-input num" min="1" max="5" value="2">
+                  <em>条帖子</em>
+                </div>
+              </div>
+              <div class="num-cell">
+                <span>每帖回复</span>
+                <div class="num-cell-row">
+                  <input type="number" id="forum_post_count" class="forum-set-input num" min="1" max="12" value="3">
+                  <em>条</em>
+                </div>
+              </div>
+              <div class="num-cell">
+                <span>楼中楼上限</span>
+                <div class="num-cell-row">
+                  <input type="number" id="forum_reply_count" class="forum-set-input num" min="0" max="6" value="2">
+                  <em>条</em>
+                </div>
+              </div>
+              <div class="num-cell">
+                <span>带节奏反应</span>
+                <div class="num-cell-row">
+                  <input type="number" id="forum_stir_count" class="forum-set-input num" min="1" max="8" value="3">
+                  <em>条</em>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="set-sec">
+          <div class="sec-no">03</div>
+          <div class="sec-main">
+            <div class="sec-title">素材</div>
+            <label class="set-check">
+              <input type="checkbox" id="forum_read_chat">
+              <span>读取最近聊天记录</span>
+            </label>
+            <label class="set-check">
+              <input type="checkbox" id="forum_read_persona">
+              <span>读取 user 人设</span>
+            </label>
+            <label class="set-check">
+              <input type="checkbox" id="forum_read_world">
+              <span>读取当前世界书</span>
+            </label>
+            <div class="sec-desc" style="margin-top:9px;">角色私聊永远会读角色卡和剧情，不受这里影响</div>
+          </div>
+        </section>
+
+        <section class="set-sec">
+          <div class="sec-no">04</div>
+          <div class="sec-main">
+            <div class="sec-title">身份</div>
+            <label class="set-label" for="forum_alias">你的小号名</label>
+            <input type="text" id="forum_alias" class="forum-set-input" placeholder="留空则自动起名">
+            <label class="set-label" for="forum_custom_prompt">世界观设定 / 自定义提示词</label>
+            <textarea id="forum_custom_prompt" class="forum-set-input" rows="3" placeholder="例如：这是一个赛博朋克世界…"></textarea>
+          </div>
+        </section>
+
+        <section class="set-sec">
+          <div class="sec-no">05</div>
+          <div class="sec-main">
+            <div class="sec-title">独立接口</div>
+            <div class="sec-desc">留空则走 SillyTavern 当前模型。角色私聊建议留空，用你调好的预设效果最好</div>
+
+            <label class="set-label" for="forum_api_url">Base URL</label>
+            <input type="text" id="forum_api_url" class="forum-set-input" placeholder="https://api.openai.com/v1">
+
+            <label class="set-label" for="forum_api_key">API Key</label>
+            <input type="password" id="forum_api_key" class="forum-set-input" placeholder="sk-…">
+
+            <label class="set-label" for="forum_api_model">Model</label>
+            <div class="field-row">
+              <input type="text" id="forum_api_model" class="forum-set-input" placeholder="手动输入或点右侧拉取">
+              <button class="btn-ghost" id="forum_fetch_models">拉取</button>
+            </div>
+            <select id="forum_model_select" class="forum-set-input" style="display: none;">
+              <option value="">-- 请选择一个模型 --</option>
+            </select>
+
+            <label class="set-check" style="margin-top:14px;">
+              <input type="checkbox" id="forum_char_use_st">
+              <span>角色私聊强制走 SillyTavern 模型</span>
+            </label>
+          </div>
+        </section>
+
+        <button class="btn-danger" id="forum_clear_all">清空所有帖子 · 事件 · 私信 · 角色对话</button>
+      </div>
+
+      <div class="modal-footer">
+        <button id="forum_cancel_api" class="btn-cancel">取消</button>
+        <button id="forum_save_api" class="btn-save">保存配置</button>
+      </div>
+    </div>
+  </div>
+</div>
