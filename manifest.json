@@ -1,0 +1,10 @@
+{
+  "display_name": "幻境社区",
+  "loading_order": 10,
+  "requires": [],
+  "optional": [],
+  "js": "index.js",
+  "css": "style.css",
+  "author": "you",
+  "version": "0.3.3"
+}
