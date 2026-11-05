@@ -1,0 +1,689 @@
+<div id="forum_panel" class="forum-app" style="display: none;">
+
+  <!-- ==================== 目录封面 ==================== -->
+  <div id="forum_cover_view" class="network-view" style="display: none;">
+    <header class="masthead">
+      <div class="mast-left">
+        <h1 class="mast-title">幻境网络</h1>
+        <div class="mast-sub">HUANJING NETWORK</div>
+      </div>
+      <nav class="mast-tools">
+        <button type="button" class="hd-btn network-settings" title="设置">
+          <i class="fa-solid fa-sliders"></i>
+        </button>
+        <button type="button" class="hd-btn network-close" title="关闭">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </nav>
+    </header>
+
+    <div class="cover-scroll">
+      <div class="cover-edition">
+        <span id="network_issue">ISSUE NO.000</span>
+        <span>此刻的网络</span>
+      </div>
+
+      <div class="cover-intro">
+        <b>故事之外，仍有人说话。</b>
+        <span>公开的传闻，私下的来信，还有被写下的另一种故事。</span>
+      </div>
+
+      <div class="cover-directory">
+        <button type="button" class="cover-entry" data-module="community">
+          <span class="cover-entry-no">01</span>
+          <span class="cover-entry-body">
+            <span class="cover-entry-heading">
+              <b>社区</b>
+              <small>COMMUNITY</small>
+            </span>
+            <span class="cover-entry-preview" id="cover_community_preview">
+              这里还没有人说话
+            </span>
+            <span class="cover-entry-meta" id="cover_community_meta">
+              帖子 · 事件 · 热议
+            </span>
+          </span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <button type="button" class="cover-entry" data-module="communication">
+          <span class="cover-entry-no">02</span>
+          <span class="cover-entry-body">
+            <span class="cover-entry-heading">
+              <b>通讯</b>
+              <small>CORRESPONDENCE</small>
+              <em class="cover-unread" id="cover_unread" style="display:none;">0</em>
+            </span>
+            <span class="cover-entry-preview" id="cover_communication_preview">
+              暂时没有新的来信
+            </span>
+            <span class="cover-entry-meta">
+              角色 · 私信 · 邮箱 · 漂流瓶
+            </span>
+          </span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <button type="button" class="cover-entry" data-module="media">
+          <span class="cover-entry-no">03</span>
+          <span class="cover-entry-body">
+            <span class="cover-entry-heading">
+              <b>媒体</b>
+              <small>PRESS</small>
+            </span>
+            <span class="cover-entry-preview" id="cover_media_preview">晚报还没有创刊</span>
+<span class="cover-entry-meta" id="cover_media_meta">幻境晚报 · 一期一刊</span>
+          </span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <button type="button" class="cover-entry" data-module="fanworks">
+          <span class="cover-entry-no">04</span>
+          <span class="cover-entry-body">
+            <span class="cover-entry-heading">
+              <b>同人</b>
+              <small>ARCHIVE</small>
+            </span>
+            <span class="cover-entry-preview">他们把传闻写成了故事</span>
+            <span class="cover-entry-meta">同人档案筹备中 · 尚未开放</span>
+          </span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+
+      <div class="cover-footer">四个入口 · 同一个虚构世界</div>
+    </div>
+  </div>
+<div id="forum_media_view" class="network-view">
+  <div class="network-page-head">
+    <button class="network-home" title="返回目录"><i class="fa-solid fa-arrow-left"></i></button>
+    <h2>媒体</h2>
+  </div>
+
+  <!-- 报纸滚动区 -->
+  <div class="paper-scroll">
+    <!-- 空状态：还没创刊 -->
+    <div class="empty-state" id="paper_empty_wrap">
+      <i class="fa-regular fa-newspaper"></i>
+      <p>晚报还没有创刊</p>
+      <div class="es-sub">P R E S S &nbsp; R O O M &nbsp; E M P T Y</div>
+      <button class="empty-btn" id="paper_first">出创刊号</button>
+    </div>
+
+    <!-- 报纸正文 -->
+    <div class="paper-sheet" id="paper_sheet">
+      <div class="paper-mast">
+        <div class="paper-mast-name">幻境晚报</div>
+        <div class="paper-mast-meta">
+          <span>晚 间 刊</span>
+          <span id="paper_no">NO.001</span>
+          <span id="paper_date"></span>
+        </div>
+      </div>
+
+      <div class="paper-lead">
+        <div class="paper-lead-title" id="paper_headline"></div>
+        <div class="paper-lead-body" id="paper_lead"></div>
+        <div class="paper-lead-sig">—— 本报讯</div>
+      </div>
+
+      <div class="paper-news-grid" id="paper_news"></div>
+
+      <div class="paper-letter">
+        <div class="paper-letter-kicker">■ 读者来信</div>
+        <div class="paper-letter-body" id="paper_letter"></div>
+        <div class="paper-letter-sign" id="paper_letter_sign"></div>
+      </div>
+
+      <div class="paper-foot">
+        幻境晚报编辑部 · 本报内容均为虚构 · 请勿对号入座
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部操作条 -->
+  <div class="paper-bar">
+    <button class="paper-prev" id="paper_prev">‹ 上一期</button>
+    <span class="paper-pos" id="paper_pos">尚未创刊</span>
+    <button class="paper-issue-btn" id="paper_new">出下一期</button>
+  </div>
+</div>
+
+  <!-- ==================== 同人（占位） ==================== -->
+  <div id="forum_fanworks_view" class="network-view" style="display: none;">
+    <div class="network-page-head">
+      <button class="network-home" title="返回目录"><i class="fa-solid fa-arrow-left"></i></button>
+      <h2>同人</h2>
+    </div>
+    <div class="network-placeholder">
+      <span class="network-placeholder-kicker">ARCHIVE</span>
+      <h3>同人档案 · 敬请期待</h3>
+      <p>他们把传闻写成了故事。这里将收录这个虚构世界里的同人作品。</p>
+    </div>
+  </div>
+
+  <!-- ==================== 主界面 ==================== -->
+  <div id="forum_main_view" class="forum-main-view">
+
+    <header class="masthead" id="forum_drag_handle">
+      <div class="mast-left">
+        <h1 class="mast-title">幻境社区</h1>
+        <div class="mast-sub">HUANJING COMMUNITY</div>
+      </div>
+      <nav class="mast-tools">
+              <button type="button" class="hd-btn network-home" title="返回目录" aria-label="返回目录">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <!-- ===== HTML PART 2 END ===== -->
+        <button class="hd-primary" id="forum_quick_gen" title="刷一批">
+          <i class="fa-solid fa-rotate-right"></i>
+        </button>
+        <button class="hd-btn" id="forum_open_gen" title="搞事">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </button>
+        <button class="hd-btn hd-msg" id="forum_open_msg" title="消息">
+          <i class="fa-solid fa-envelope"></i>
+          <em class="hd-badge" id="forum_msg_badge" style="display:none;">0</em>
+        </button>
+        <button class="hd-btn" id="forum_open_api" title="设置">
+          <i class="fa-solid fa-sliders"></i>
+        </button>
+        <button class="hd-btn hd-close" id="forum_close_btn" title="关闭">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </nav>
+    </header>
+
+    <div class="app-trends" id="forum_trends"></div>
+
+    <div class="app-filters" id="forum_filters">
+      <div class="filter-pill active" data-filter="all">全部</div>
+      <div class="filter-pill" data-filter="forum">论坛</div>
+      <div class="filter-pill" data-filter="tieba">贴吧</div>
+      <div class="filter-pill" data-filter="weibo">微博</div>
+      <div class="filter-pill" data-filter="xhs">小红书</div>
+      <div class="filter-pill" data-filter="fav"><i class="fa-solid fa-star"></i> 收藏</div>
+    </div>
+
+    <div class="app-content" id="forum_list"></div>
+  </div>
+
+  <div class="resize-handle" id="forum_resize" title="拖动缩放窗口"></div>
+
+  <!-- ==================== 搞事面板 ==================== -->
+  <div id="forum_gen_sheet" class="forum-sheet" style="display: none;">
+    <div class="sheet-card">
+      <div class="sheet-rule"></div>
+      <div class="sheet-title">G E N E R A T E</div>
+
+      <button class="sheet-row" id="gen_mixed">
+        <span class="sheet-no">01</span>
+        <span class="sheet-body">
+          <b>刷一批新帖</b>
+          <small>按当前分区生成散帖</small>
+        </span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+
+      <button class="sheet-row" id="gen_event">
+        <span class="sheet-no">02</span>
+        <span class="sheet-body">
+          <b>一个事件 · 四平台</b>
+          <small>同一件事，四个平台各歪一遍</small>
+        </span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+
+      <div class="sheet-row sheet-row-input">
+        <span class="sheet-no">03</span>
+        <span class="sheet-body">
+          <b>挖坟</b>
+          <input type="text" id="necro_input" class="forum-set-input" placeholder="关键词，翻出几年前的老帖">
+        </span>
+        <button class="btn-ghost" id="gen_necro">挖</button>
+      </div>
+
+      <button class="sheet-row" id="gen_account">
+        <span class="sheet-no">04</span>
+        <span class="sheet-body">
+          <b>物色一个号</b>
+          <small>猜中他的密码就到手，四次全错会被发现</small>
+        </span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+
+      <button class="sheet-row" id="gen_open_vault">
+        <span class="sheet-no">05</span>
+        <span class="sheet-body">
+          <b>我手里的号</b>
+          <small id="vault_hint">还没有</small>
+        </span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+
+      <button class="sheet-close" id="gen_sheet_close">取消</button>
+    </div>
+  </div>
+
+  <!-- ==================== 号库 ==================== -->
+  <div id="forum_vault" class="forum-sheet" style="display: none;">
+    <div class="sheet-card">
+      <div class="sheet-rule"></div>
+      <div class="sheet-title">A C C O U N T S</div>
+      <div class="vault-list" id="vault_list"></div>
+      <button class="sheet-close" id="vault_close">返回</button>
+    </div>
+  </div>
+
+  <!-- ==================== 用某个号发帖 ==================== -->
+  <div id="forum_post_as" class="forum-sheet" style="display: none;">
+    <div class="sheet-card">
+      <div class="sheet-rule"></div>
+      <div class="pa-sheet-head">
+        <button type="button" class="btn-ghost" id="post_as_back">
+          <i class="fa-solid fa-arrow-left"></i> 返回号库
+        </button>
+        <div class="sheet-title" id="post_as_title">以 XXX 的身份发帖</div>
+      </div>
+
+      <div class="pa-meta" id="post_as_meta"></div>
+
+      <div class="pa-modes" id="post_as_modes">
+        <div class="pa-mode active" data-mode="post">正常发帖</div>
+        <div class="pa-mode" data-mode="ad">发广告</div>
+        <div class="pa-mode" data-mode="confess">自曝</div>
+      </div>
+      <div class="pa-hint" id="post_as_hint"></div>
+
+      <textarea id="post_as_input" class="forum-set-input" rows="3" placeholder="想让这个号说什么…"></textarea>
+
+      <div class="pa-btns">
+        <button class="sheet-close" id="post_as_cancel" style="margin-top:0;">取消</button>
+        <button class="stir-send" id="post_as_send">发出去</button>
+      </div>
+    </div>
+  </div>
+  
+    <!-- ==================== 破解 ==================== -->
+  <div id="forum_crack" class="forum-sheet" style="display: none;">
+    <div class="sheet-card">
+      <div class="sheet-rule"></div>
+      <div class="sheet-title">C R A C K &nbsp; I T</div>
+      <div id="crack_body"></div>
+      <button class="sheet-close" id="crack_close">放弃这个目标</button>
+    </div>
+  </div>
+
+  <!-- ==================== 旧帖 ==================== -->
+  <div id="forum_oldposts" class="forum-sheet" style="display: none;">
+    <div class="sheet-card">
+      <div class="sheet-rule"></div>
+      <div class="sheet-title" id="oldposts_title">O L D &nbsp; P O S T S</div>
+      <div id="oldposts_list"></div>
+      <button class="sheet-close" id="oldposts_close">返回</button>
+    </div>
+  </div>
+
+  <!-- ==================== 转发给谁 ==================== -->
+  <div id="forum_char_pick" class="forum-sheet" style="display: none;">
+    <div class="sheet-card">
+      <div class="sheet-rule"></div>
+      <div class="sheet-title">给谁看</div>
+      <div class="char-pick-list" id="char_pick_list"></div>
+      <button class="sheet-close" id="char_pick_close">取消</button>
+    </div>
+  </div>
+
+  <!-- ==================== 消息 ==================== -->
+  <div id="forum_msg_panel" style="display: none;">
+    <header class="msg-header">
+      <span class="nav-back" id="forum_msg_back" title="返回"><i class="fa-solid fa-arrow-left"></i></span>
+      <div class="msg-tabs">
+        <div class="msg-tab active" data-tab="char">角色<em class="tab-dot" id="char_dot" style="display:none;"></em></div>
+        <div class="msg-tab" data-tab="dm">私信</div>
+        <div class="msg-tab" data-tab="mail">邮箱<em class="tab-dot" id="mail_dot" style="display:none;"></em></div>
+        <div class="msg-tab" data-tab="bottle">瓶子</div>
+      </div>
+    </header>
+
+    <!-- 角色私聊 -->
+    <div class="msg-pane" id="msg_tab_char" style="display: none;">
+      <div class="dm-wrap" id="char_list_view">
+        <div class="dm-list" id="char_list"></div>
+      </div>
+
+      <div class="dm-wrap" id="char_chat_view" style="display: none;">
+        <div class="dm-chat-head">
+          <span class="nav-back" id="char_back_list"><i class="fa-solid fa-arrow-left"></i></span>
+          <div class="char-face" id="char_avatar"></div>
+          <div class="dm-chat-meta">
+            <b id="char_chat_name"></b>
+            <span id="char_chat_sub"></span>
+          </div>
+          <i class="fa-solid fa-trash-can char-wipe" id="char_wipe" title="清空这段对话"></i>
+        </div>
+        <div class="dm-messages" id="char_messages"></div>
+        <div class="bottle-compose">
+          <input type="text" class="bottle-input" id="char_input" placeholder="说点什么…">
+          <button class="bottle-send" id="char_send">发送</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 陌生网友私信 -->
+    <div class="msg-pane" id="msg_tab_dm" style="display: none;">
+      <div class="dm-wrap" id="dm_list_view">
+        <div class="dm-list" id="dm_list"></div>
+        <div class="dm-foot">
+          <button class="ghost-wide" id="forum_fetch_dm">看看有没有人找我</button>
+        </div>
+      </div>
+
+      <div class="dm-wrap" id="dm_chat_view" style="display: none;">
+        <div class="dm-chat-head">
+          <span class="nav-back" id="dm_back_list"><i class="fa-solid fa-arrow-left"></i></span>
+          <div class="dm-chat-meta">
+            <b id="dm_chat_name"></b>
+            <span id="dm_chat_from"></span>
+          </div>
+        </div>
+        <div class="dm-messages" id="dm_messages"></div>
+        <div class="bottle-compose">
+          <input type="text" class="bottle-input" id="dm_input" placeholder="回他一句…">
+          <button class="bottle-send" id="dm_send">发送</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 邮箱 -->
+    <div class="msg-pane" id="msg_tab_mail" style="display: none;">
+      <div class="dm-wrap" id="mail_list_view">
+        <div class="mail-filters" id="mail_filters">
+          <div class="mail-fil active" data-kind="all">全部</div>
+          <div class="mail-fil" data-kind="letter">来信</div>
+          <div class="mail-fil" data-kind="system">通知</div>
+          <div class="mail-fil" data-kind="spam">垃圾</div>
+                    <div class="mail-fil" data-kind="harass">骚扰</div>
+        </div>
+        <div class="dm-list" id="mail_list"></div>
+        <div class="dm-foot">
+          <button class="ghost-wide" id="forum_fetch_mail">收取新邮件</button>
+        </div>
+      </div>
+
+      <div class="dm-wrap" id="mail_read_view" style="display: none;">
+        <div class="mail-head">
+          <span class="nav-back" id="mail_back_list"><i class="fa-solid fa-arrow-left"></i></span>
+          <div class="mail-head-tools">
+            <i class="fa-solid fa-trash-can mail-del-one" id="mail_del_one" title="删除这封"></i>
+          </div>
+        </div>
+        <div class="mail-body" id="mail_body"></div>
+        <div class="bottle-compose" id="mail_compose">
+          <input type="text" class="bottle-input" id="mail_input" placeholder="回信…">
+          <button class="bottle-send" id="mail_send">回信</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 漂流瓶 -->
+    <div class="msg-pane" id="msg_tab_bottle" style="display: none;">
+      <div class="bottle-ocean">
+        <div class="ocean-waves"></div>
+        <div class="ocean-waves ocean-waves-2"></div>
+
+        <div class="bottle-stamp">M E S S A G E &nbsp; I N &nbsp; A &nbsp; B O T T L E</div>
+
+        <div id="bottle_message_box" style="display: none;">
+          <div class="bottle-paper">
+            <div class="bottle-text" id="bottle_text"></div>
+            <div class="bottle-author" id="bottle_author"></div>
+          </div>
+        </div>
+        
+                <!-- 捞到的瓶子：对话区 -->
+        <div id="bottle_chat_wrap" style="display: none;">
+          <div class="dm-messages" id="bottle_chat_log"></div>
+          <div class="bottle-reply-row">
+            <input type="text" class="bottle-input" id="bottle_reply_input" placeholder="回一句…">
+            <button class="bottle-send" id="bottle_reply_btn">回复</button>
+            <button class="btn-ghost" id="bottle_block_btn">扔回</button>
+          </div>
+        </div>
+
+        <button class="ocean-btn" id="forum_dredge_btn">🌊 捞一个瓶子</button>
+      </div>
+      <div class="bottle-compose">
+        <input type="text" class="bottle-input" id="forum_bottle_input" placeholder="在纸上写点什么，扔向大海…">
+        <button class="bottle-send" id="forum_throw_btn">扔出</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 设置 ==================== -->
+  <div id="forum_modal_overlay" style="display: none;">
+    <div id="forum_api_panel">
+
+      <div class="modal-header">
+        <div>
+          <div class="modal-kicker">S E T T I N G S</div>
+          <div class="modal-title">幻境设置</div>
+        </div>
+        <span id="forum_close_modal_icon" title="关闭"><i class="fa-solid fa-xmark"></i></span>
+      </div>
+
+      <div class="modal-body">
+
+        <!-- 01 作用范围 -->
+        <section class="set-sec">
+          <div class="sec-no">01</div>
+          <div class="sec-main">
+            <div class="sec-title">作用范围</div>
+            <label class="set-check">
+              <input type="checkbox" id="forum_use_local">
+              <span>这个聊天单独设置</span>
+            </label>
+            <div class="sec-desc" id="scope_hint">勾上后，下面的距离、世界观、小号名只影响当前角色卡</div>
+          </div>
+        </section>
+
+        <!-- 02 距离 -->
+        <section class="set-sec">
+          <div class="sec-no">02</div>
+          <div class="sec-main">
+            <div class="sec-title">距离</div>
+            <div class="sec-desc">网友离你的故事有多近</div>
+            <div class="seg" id="forum_distance">
+              <div class="seg-item" data-v="0"><b>无关</b><span>纯路人日常</span></div>
+              <div class="seg-item" data-v="1"><b>擦边</b><span>聊你世界的事</span></div>
+              <div class="seg-item" data-v="2"><b>直击</b><span>你就是话题</span></div>
+              <div class="seg-item" data-v="3"><b>读者</b><span>书粉讨论区</span></div>
+            </div>
+            <div class="seg-hint" id="forum_distance_hint"></div>
+          </div>
+        </section>
+
+        <!-- 03 规模 -->
+        <section class="set-sec">
+          <div class="sec-no">03</div>
+          <div class="sec-main">
+            <div class="sec-title">规模</div>
+            <div class="sec-desc">调大会更费 token，生成也更慢</div>
+            <div class="num-grid">
+              <div class="num-cell">
+                <span>每次生成</span>
+                <div class="num-cell-row">
+                  <input type="number" id="forum_gen_count" class="forum-set-input num" min="1" max="5" value="2">
+                  <em>条帖子</em>
+                </div>
+              </div>
+              <div class="num-cell">
+                <span>每帖回复</span>
+                <div class="num-cell-row">
+                  <input type="number" id="forum_post_count" class="forum-set-input num" min="1" max="12" value="3">
+                  <em>条</em>
+                </div>
+              </div>
+              <div class="num-cell">
+                <span>楼中楼上限</span>
+                <div class="num-cell-row">
+                  <input type="number" id="forum_reply_count" class="forum-set-input num" min="0" max="6" value="2">
+                  <em>条</em>
+                </div>
+              </div>
+              <div class="num-cell">
+                <span>带节奏反应</span>
+                <div class="num-cell-row">
+                  <input type="number" id="forum_stir_count" class="forum-set-input num" min="1" max="8" value="3">
+                  <em>条</em>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 04 素材 -->
+        <section class="set-sec">
+          <div class="sec-no">04</div>
+          <div class="sec-main">
+            <div class="sec-title">素材</div>
+            <label class="set-check">
+              <input type="checkbox" id="forum_read_chat">
+              <span>读取最近聊天记录</span>
+            </label>
+            <label class="set-check">
+              <input type="checkbox" id="forum_read_persona">
+              <span>读取 user 人设</span>
+            </label>
+            <label class="set-check">
+              <input type="checkbox" id="forum_read_world">
+              <span>读取当前世界书</span>
+            </label>
+            <div class="sec-desc" style="margin-top:9px;">角色私聊永远会读角色卡和剧情，不受这里影响</div>
+          </div>
+        </section>
+
+        <!-- 05 身份 -->
+        <section class="set-sec">
+          <div class="sec-no">05</div>
+          <div class="sec-main">
+            <div class="sec-title">身份</div>
+            <label class="set-label" for="forum_alias">你的小号名</label>
+            <input type="text" id="forum_alias" class="forum-set-input" placeholder="留空则自动起名">
+            <label class="set-label" for="forum_mail_addr">你的邮箱地址</label>
+            <input type="text" id="forum_mail_addr" class="forum-set-input" placeholder="留空则自动生成">
+            <label class="set-label" for="forum_custom_prompt">世界观设定 / 自定义提示词</label>
+            <textarea id="forum_custom_prompt" class="forum-set-input" rows="3" placeholder="例如：这是一个赛博朋克世界…"></textarea>
+          </div>
+        </section>
+
+                <!-- 06 自动 -->
+        <section class="set-sec">
+          <div class="sec-no">06</div>
+          <div class="sec-main">
+            <div class="sec-title">自动</div>
+            <div class="sec-desc">正文里每过几轮，社区自己动一次。填 0 表示关掉</div>
+            <div class="num-grid">
+              <div class="num-cell">
+                <span>自动刷帖</span>
+                <div class="num-cell-row">
+                  <em>每</em>
+                  <input type="number" id="forum_auto_feed" class="forum-set-input num" min="0" max="99" value="0">
+                  <em>轮</em>
+                </div>
+              </div>
+              <div class="num-cell">
+                <span>角色主动找你</span>
+                <div class="num-cell-row">
+                  <em>每</em>
+                  <input type="number" id="forum_auto_char" class="forum-set-input num" min="0" max="99" value="0">
+                  <em>轮</em>
+                </div>
+              </div>
+              <div class="num-cell">
+                <span>陌生网友私信</span>
+                <div class="num-cell-row">
+                  <em>每</em>
+                  <input type="number" id="forum_auto_dm" class="forum-set-input num" min="0" max="99" value="0">
+                  <em>轮</em>
+                </div>
+              </div>
+              <div class="num-cell">
+                <span>骚扰追击</span>
+                <div class="num-cell-row">
+                  <em>每</em>
+                  <input type="number" id="forum_auto_harass" class="forum-set-input num" min="0" max="99" value="0">
+                  <em>轮</em>
+                </div>
+              </div>
+            </div>
+            <div class="sec-desc" id="auto_stat" style="margin-top:9px;"></div>
+            <div class="sec-desc" style="margin-top:6px;">只有正常发送算一轮，重roll、续写、impersonate 都不算。计数按聊天各自记</div>
+          </div>
+        </section>
+
+        <!-- 07 数据 -->
+        <section class="set-sec">
+          <div class="sec-no">07</div>
+          <div class="sec-main">
+            <div class="sec-title">数据</div>
+            <div class="sec-desc" id="data_stat">统计中…</div>
+
+            <div class="field-row" style="margin-top:13px;">
+              <label class="set-label" for="forum_cap">帖子上限</label>
+              <input type="number" id="forum_cap" class="forum-set-input num" min="20" max="2000" value="150">
+              <span class="field-unit">条</span>
+            </div>
+            <div class="sec-desc" style="margin-top:6px;">超出后自动丢掉最旧的，收藏过的不动</div>
+
+            <div class="io-row">
+              <button class="btn-ghost" id="forum_export">导出备份</button>
+              <button class="btn-ghost" id="forum_import_btn">导入备份</button>
+              <input type="file" id="forum_import_file" accept="application/json,.json" style="display:none;">
+            </div>
+
+            <button class="btn-danger" id="forum_clear_all">清空这个聊天的全部内容</button>
+          </div>
+        </section>
+
+        <!-- 08 接口 -->
+        <section class="set-sec">
+          <div class="sec-no">08</div>
+          <div class="sec-main">
+            <div class="sec-title">独立接口</div>
+            <div class="sec-desc">三项都填满才生效，留空则走 SillyTavern 当前模型。角色私聊建议留空，用你调好的预设效果最好</div>
+
+            <label class="set-label" for="forum_api_url">Base URL</label>
+            <input type="text" id="forum_api_url" class="forum-set-input" placeholder="https://api.openai.com/v1">
+
+            <label class="set-label" for="forum_api_key">API Key</label>
+            <input type="password" id="forum_api_key" class="forum-set-input" placeholder="sk-…">
+            <div class="key-note">
+              密钥只存在这台设备的浏览器里，不会写进 settings.json，分享预设和备份都不会带出去。
+              但它仍然是明文保存的，公用电脑上请谨慎。
+            </div>
+
+            <label class="set-label" for="forum_api_model">Model</label>
+            <div class="field-row">
+              <input type="text" id="forum_api_model" class="forum-set-input" placeholder="手动输入或点右侧拉取">
+              <button class="btn-ghost" id="forum_fetch_models">拉取</button>
+            </div>
+            <select id="forum_model_select" class="forum-set-input" style="display: none;">
+              <option value="">-- 请选择一个模型 --</option>
+            </select>
+
+            <label class="set-check" style="margin-top:14px;">
+              <input type="checkbox" id="forum_char_use_st">
+              <span>角色私聊强制走 SillyTavern 模型</span>
+            </label>
+          </div>
+        </section>
+      </div>
+
+      <div class="modal-footer">
+        <button id="forum_cancel_api" class="btn-cancel">取消</button>
+        <button id="forum_save_api" class="btn-save">保存配置</button>
+      </div>
+    </div>
+  </div>
+</div>
